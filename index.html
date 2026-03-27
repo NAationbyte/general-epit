@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generál Épít | Megbízható kivitelezés</title>
+  <meta name="description" content="Ablakcsere, festés, gipszkarton, burkolás – mindent egy kézből. Hívjon most!" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #E8671A;
+      --orange-dark: #c45510;
+      --dark: #1a1a1a;
+      --gray: #f5f5f5;
+      --text: #333;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: #fff;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--dark);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--orange); }
+    nav a.cta-nav {
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.55rem 1.3rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    nav a.cta-nav:hover { background: var(--orange-dark); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      color: #fff;
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--orange); }
+    .hero p {
+      font-size: 1.15rem;
+      color: #ccc;
+      max-width: 540px;
+      margin: 0 auto 2.2rem;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2.2rem;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .hero-cta:hover { background: var(--orange-dark); transform: translateY(-2px); }
+
+    /* SERVICES */
+    .services {
+      padding: 5rem 2rem;
+      background: var(--gray);
+    }
+    .services h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    .services .sub {
+      text-align: center;
+      color: #777;
+      margin-bottom: 3rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .card .icon { font-size: 2.6rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.9rem; color: #666; line-height: 1.5; }
+
+    /* WHY */
+    .why {
+      padding: 5rem 2rem;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .why h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .why .sub { color: #777; margin-bottom: 3rem; }
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .pillar { padding: 1.5rem; }
+    .pillar .num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .pillar h4 { font-weight: 700; margin-bottom: 0.4rem; }
+    .pillar p { font-size: 0.9rem; color: #666; }
+
+    /* CTA BAND */
+    .cta-band {
+      background: var(--orange);
+      color: #fff;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .cta-band h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 0.7rem; }
+    .cta-band p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 2rem; }
+    .cta-band a.btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      transition: transform 0.1s;
+    }
+    .cta-band a.btn:hover { transform: translateY(-2px); }
+
+    /* CONTACT */
+    .contact {
+      padding: 5rem 2rem;
+      text-align: center;
+      background: var(--gray);
+    }
+    .contact h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .contact .sub { color: #777; margin-bottom: 2.5rem; }
+    .contact-box {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      align-items: center;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .contact-row a { color: var(--dark); text-decoration: none; }
+    .contact-row a:hover { color: var(--orange); }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #888;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    /* FLOATING PHONE */
+    .float-call {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: var(--orange);
+      color: #fff;
+      border-radius: 50px;
+      padding: 0.9rem 1.6rem;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(232,103,26,0.5);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.2s;
+    }
+    .float-call:hover { transform: scale(1.05); }
+
+    @media (max-width: 600px) {
+      .hero { padding: 4rem 1.5rem 3.5rem; }
+      nav { padding: 1rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Generál<span>Épít</span></div>
+    <a class="cta-nav" href="tel:+36308735288">📞 Hívjon most</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Megbízható kivitelezés<br /><span>mindent egy kézből</span></h1>
+    <p>Ablakcsere, festés, gipszkarton, burkolás – tapasztalt szakemberek, precíz munka, tisztességes ár.</p>
+    <a class="hero-cta" href="tel:+36308735288">📞 +36 30 873 5288</a>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <h2>Miben segíthetünk?</h2>
+    <p class="sub">Komplett felújítástól az egy-egy munkálatig – vállalunk mindent.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🪟</div>
+        <h3>Ablakcsere</h3>
+        <p>Régi nyílászárók cseréje, beépítés, tömítés – profi minőségben.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎨</div>
+        <h3>Festés & mázolás</h3>
+        <p>Belső falak, mennyezetek, homlokzatok – egyenletes, tartós felület.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔲</div>
+        <h3>Gipszkarton</h3>
+        <p>Válaszfalak, álmennyezetek, szigetelés – gyors és tiszta kivitelezés.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔷</div>
+        <h3>Burkolás</h3>
+        <p>Padló- és falburkolás, csempe, járólap – milliméter pontossággal.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚡</div>
+        <h3>Villanyszerelés</h3>
+        <p>Elektromos hálózat kiépítés, felújítás, aljzatok, kapcsolók – biztonságosan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <h2>Miért válasszon minket?</h2>
+    <p class="sub">Nem csak elvégezzük a munkát – utána sem kell aggódnia.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="num">10+</div>
+        <h4>Év tapasztalat</h4>
+        <p>Csak olyan munkát vállalunk, amit biztosan jól tudunk csinálni.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">100%</div>
+        <h4>Határidő tartás</h4>
+        <p>Amit megígérünk, azt tartjuk. Időben, anyagban, minőségben.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">0</div>
+        <h4>Rejtett költség</h4>
+        <p>Átlátható árajánlat előre – nem éri meglepetés a munka végén.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <h2>Kérjen ingyenes felmérést!</h2>
+    <p>Hívjon vagy írjon – 24 órán belül visszajelzünk.</p>
+    <a class="btn" href="tel:+36308735288">📞 +36 30 873 5288</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h2>Elérhetőség</h2>
+    <p class="sub">Hívjon bármikor, készséggel állunk rendelkezésére.</p>
+    <div class="contact-box">
+      <div class="contact-row">
+        📞 <a href="tel:+36308735288">+36 30 873 5288</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 GenerálÉpít · Minden jog fenntartva
+  </footer>
+
+  <!-- FLOATING CTA -->
+  <a class="float-call" href="tel:+36308735288">📞 Hívjon most!</a>
+
+</body>
+</html>
