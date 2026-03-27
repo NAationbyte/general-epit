@@ -3,209 +3,377 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Generál Épít | Megbízható kivitelezés</title>
-  <meta name="description" content="Ablakcsere, festés, gipszkarton, burkolás – mindent egy kézből. Hívjon most!" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <title>GenerálÉpít | Megbízható kivitelezés – ablak, festés, burkolás, villany</title>
+  <meta name="description" content="Komplett lakásfelújítás és kivitelezés: ablakcsere, festés, gipszkarton, burkolás, villanyszerelés. Ingyenes felmérés, tisztességes ár. Hívjon most!" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --orange: #E8671A;
       --orange-dark: #c45510;
-      --dark: #1a1a1a;
-      --gray: #f5f5f5;
-      --text: #333;
+      --orange-light: #fff3ec;
+      --dark: #111827;
+      --dark2: #1f2937;
+      --gray: #f9fafb;
+      --text: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      background: #fff;
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      background: var(--dark);
+      background: rgba(17,24,39,0.97);
+      backdrop-filter: blur(8px);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
     }
-    .logo {
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
+    .logo { color: #fff; font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; }
     .logo span { color: var(--orange); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    nav a.nav-link { color: #d1d5db; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    nav a.nav-link:hover { color: #fff; }
     nav a.cta-nav {
       background: var(--orange);
       color: #fff;
       text-decoration: none;
-      padding: 0.55rem 1.3rem;
-      border-radius: 6px;
-      font-weight: 600;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 700;
       font-size: 0.95rem;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.1s;
     }
-    nav a.cta-nav:hover { background: var(--orange-dark); }
+    nav a.cta-nav:hover { background: var(--orange-dark); transform: translateY(-1px); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80&fit=crop');
+      background-size: cover;
+      background-position: center 30%;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(17,24,39,0.92) 45%, rgba(17,24,39,0.5) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 4rem 2rem 4rem 8%;
       color: #fff;
-      padding: 6rem 2rem 5rem;
-      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(232,103,26,0.2);
+      border: 1px solid rgba(232,103,26,0.4);
+      color: #fdba74;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1.5px;
     }
     .hero h1 span { color: var(--orange); }
     .hero p {
       font-size: 1.15rem;
-      color: #ccc;
-      max-width: 540px;
-      margin: 0 auto 2.2rem;
-      line-height: 1.6;
+      color: #d1d5db;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
     }
-    .hero-cta {
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
       background: var(--orange);
       color: #fff;
       text-decoration: none;
-      padding: 1rem 2.2rem;
-      border-radius: 8px;
-      font-size: 1.15rem;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
       font-weight: 700;
-      transition: background 0.2s, transform 0.1s;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(232,103,26,0.4);
     }
-    .hero-cta:hover { background: var(--orange-dark); transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(232,103,26,0.5); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: #fff;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.15); }
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      gap: 2.5rem;
+      padding: 1.8rem 8%;
+      background: rgba(17,24,39,0.85);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stat { text-align: center; color: #fff; }
+    .hero-stat .num { font-size: 2rem; font-weight: 900; color: var(--orange); line-height: 1; }
+    .hero-stat .label { font-size: 0.8rem; color: #9ca3af; margin-top: 0.3rem; }
 
-    /* SERVICES */
-    .services {
-      padding: 5rem 2rem;
-      background: var(--gray);
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--orange-light);
+      border-top: 3px solid var(--orange);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
     }
-    .services h2 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
+    .trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; font-weight: 600; color: var(--dark); }
+
+    /* ── SERVICES ── */
+    .services { padding: 6rem 2rem; background: #fff; }
+    .section-header { text-align: center; max-width: 600px; margin: 0 auto 3.5rem; }
+    .section-tag {
+      display: inline-block;
+      background: var(--orange-light);
+      color: var(--orange);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
     }
-    .services .sub {
-      text-align: center;
-      color: #777;
-      margin-bottom: 3rem;
+    .section-header h2 { font-size: 2.2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 0.8rem; color: var(--dark); }
+    .section-header p { color: var(--muted); font-size: 1.05rem; line-height: 1.7; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .grid {
+    .service-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+      background: #fff;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.1); }
+    .service-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .service-body { padding: 1.5rem; }
+    .service-icon { font-size: 1.8rem; margin-bottom: 0.7rem; }
+    .service-body h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--dark); }
+    .service-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── HOW IT WORKS ── */
+    .how { padding: 6rem 2rem; background: var(--gray); }
+    .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .step { text-align: center; padding: 2rem 1.5rem; }
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      font-size: 1.4rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 4px 16px rgba(232,103,26,0.35);
+    }
+    .step h4 { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--dark); }
+    .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── GALLERY ── */
+    .gallery { padding: 6rem 2rem; background: #fff; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 12px;
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .gallery-item { overflow: hidden; }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { padding: 6rem 2rem; background: var(--dark); }
+    .testimonials .section-header h2 { color: #fff; }
+    .testimonials .section-header p { color: #9ca3af; }
+    .testimonials .section-tag { background: rgba(232,103,26,0.15); color: #fb923c; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       max-width: 960px;
       margin: 0 auto;
     }
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      transition: transform 0.2s, box-shadow 0.2s;
+    .testi-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 2rem;
     }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-    .card .icon { font-size: 2.6rem; margin-bottom: 1rem; }
-    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .card p { font-size: 0.9rem; color: #666; line-height: 1.5; }
-
-    /* WHY */
-    .why {
-      padding: 5rem 2rem;
-      max-width: 860px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .why h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .why .sub { color: #777; margin-bottom: 3rem; }
-    .pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-    }
-    .pillar { padding: 1.5rem; }
-    .pillar .num {
-      font-size: 2.5rem;
-      font-weight: 800;
-      color: var(--orange);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-    .pillar h4 { font-weight: 700; margin-bottom: 0.4rem; }
-    .pillar p { font-size: 0.9rem; color: #666; }
-
-    /* CTA BAND */
-    .cta-band {
+    .stars { color: #fbbf24; font-size: 1.1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testi-card p { color: #d1d5db; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.3rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
       background: var(--orange);
-      color: #fff;
-      text-align: center;
-      padding: 4rem 2rem;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: #fff; font-size: 1rem;
     }
-    .cta-band h2 { font-size: 1.9rem; font-weight: 800; margin-bottom: 0.7rem; }
-    .cta-band p { font-size: 1.05rem; opacity: 0.9; margin-bottom: 2rem; }
-    .cta-band a.btn {
-      display: inline-block;
+    .testi-name { color: #fff; font-weight: 700; font-size: 0.9rem; }
+    .testi-loc { color: #6b7280; font-size: 0.8rem; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1400&q=80&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+    .cta-overlay { position: absolute; inset: 0; background: rgba(232,103,26,0.88); }
+    .cta-content { position: relative; z-index: 2; color: #fff; }
+    .cta-content h2 { font-size: 2.4rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 0.8rem; }
+    .cta-content p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-content .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
       background: #fff;
       color: var(--orange);
       text-decoration: none;
-      font-weight: 700;
-      font-size: 1.15rem;
-      padding: 1rem 2.5rem;
-      border-radius: 8px;
-      transition: transform 0.1s;
+      font-weight: 800;
+      font-size: 1.2rem;
+      padding: 1.1rem 2.8rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.2);
+      transition: transform 0.15s;
     }
-    .cta-band a.btn:hover { transform: translateY(-2px); }
+    .cta-content .btn-white:hover { transform: translateY(-3px); }
 
-    /* CONTACT */
-    .contact {
-      padding: 5rem 2rem;
+    /* ── CONTACT ── */
+    .contact { padding: 6rem 2rem; background: var(--gray); }
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
       text-align: center;
-      background: var(--gray);
     }
-    .contact h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-    .contact .sub { color: #777; margin-bottom: 2.5rem; }
-    .contact-box {
+    .contact-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 3rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      margin-top: 2.5rem;
+    }
+    .phone-big {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--dark);
+      text-decoration: none;
+      display: block;
+      margin: 1rem 0;
+      letter-spacing: -1px;
+    }
+    .phone-big:hover { color: var(--orange); }
+    .contact-card .note { font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; }
+    .contact-card .call-btn {
       display: inline-flex;
-      flex-direction: column;
-      gap: 1.2rem;
       align-items: center;
+      gap: 0.6rem;
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(232,103,26,0.35);
     }
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-    .contact-row a { color: var(--dark); text-decoration: none; }
-    .contact-row a:hover { color: var(--orange); }
+    .contact-card .call-btn:hover { background: var(--orange-dark); transform: translateY(-2px); }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       background: var(--dark);
-      color: #888;
+      color: #6b7280;
       text-align: center;
-      padding: 1.5rem;
+      padding: 2rem;
       font-size: 0.85rem;
     }
+    footer strong { color: #fff; }
 
-    /* FLOATING PHONE */
+    /* ── FLOAT BTN ── */
     .float-call {
       position: fixed;
       bottom: 1.5rem;
@@ -213,22 +381,31 @@
       background: var(--orange);
       color: #fff;
       border-radius: 50px;
-      padding: 0.9rem 1.6rem;
+      padding: 0.9rem 1.8rem;
       font-weight: 700;
       font-size: 1rem;
       text-decoration: none;
-      box-shadow: 0 4px 20px rgba(232,103,26,0.5);
+      box-shadow: 0 6px 28px rgba(232,103,26,0.55);
       z-index: 999;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: transform 0.2s;
+      gap: 0.6rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: pulse 2.5s infinite;
     }
-    .float-call:hover { transform: scale(1.05); }
+    .float-call:hover { transform: scale(1.06); box-shadow: 0 10px 36px rgba(232,103,26,0.65); }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 6px 28px rgba(232,103,26,0.55); }
+      50% { box-shadow: 0 6px 40px rgba(232,103,26,0.8); }
+    }
 
-    @media (max-width: 600px) {
-      .hero { padding: 4rem 1.5rem 3.5rem; }
-      nav { padding: 1rem 1.2rem; }
+    @media (max-width: 768px) {
+      .hero-content { padding: 3rem 1.5rem; }
+      .hero-stats { gap: 1.5rem; padding: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      .nav-right .nav-link { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child { grid-row: auto; }
+      .trust-bar { gap: 1.5rem; }
     }
   </style>
 </head>
@@ -237,96 +414,230 @@
   <!-- NAV -->
   <nav>
     <div class="logo">Generál<span>Épít</span></div>
-    <a class="cta-nav" href="tel:+36308735288">📞 Hívjon most</a>
+    <div class="nav-right">
+      <a class="nav-link" href="#szolgaltatasok">Szolgáltatások</a>
+      <a class="nav-link" href="#hogyan">Hogyan működik</a>
+      <a class="nav-link" href="#velemenyek">Vélemények</a>
+      <a class="cta-nav" href="tel:+36308735288">📞 Hívjon most</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <h1>Megbízható kivitelezés<br /><span>mindent egy kézből</span></h1>
-    <p>Ablakcsere, festés, gipszkarton, burkolás – tapasztalt szakemberek, precíz munka, tisztességes ár.</p>
-    <a class="hero-cta" href="tel:+36308735288">📞 +36 30 873 5288</a>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services">
-    <h2>Miben segíthetünk?</h2>
-    <p class="sub">Komplett felújítástól az egy-egy munkálatig – vállalunk mindent.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="icon">🪟</div>
-        <h3>Ablakcsere</h3>
-        <p>Régi nyílászárók cseréje, beépítés, tömítés – profi minőségben.</p>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div style="width:100%">
+      <div class="hero-content">
+        <div class="hero-badge">⚡ Gyors kiszállás · Ingyenes felmérés</div>
+        <h1>A felújítás,<br />ahogy <span>el kellene</span><br />képzelni.</h1>
+        <p>Ablakcsere, festés, gipszkarton, burkolás, villanyszerelés – mindent egy csapattól, egy árajánlatból, egy felelős kézből. Nincs koordinációs káosz, nincs meglepetésszámla.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="tel:+36308735288">📞 +36 30 873 5288</a>
+          <a class="btn-secondary" href="#hogyan">Hogyan működik? →</a>
+        </div>
       </div>
-      <div class="card">
-        <div class="icon">🎨</div>
-        <h3>Festés & mázolás</h3>
-        <p>Belső falak, mennyezetek, homlokzatok – egyenletes, tartós felület.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🔲</div>
-        <h3>Gipszkarton</h3>
-        <p>Válaszfalak, álmennyezetek, szigetelés – gyors és tiszta kivitelezés.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🔷</div>
-        <h3>Burkolás</h3>
-        <p>Padló- és falburkolás, csempe, járólap – milliméter pontossággal.</p>
-      </div>
-      <div class="card">
-        <div class="icon">⚡</div>
-        <h3>Villanyszerelés</h3>
-        <p>Elektromos hálózat kiépítés, felújítás, aljzatok, kapcsolók – biztonságosan.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">10+</div><div class="label">Év tapasztalat</div></div>
+        <div class="hero-stat"><div class="num">300+</div><div class="label">Befejezett projekt</div></div>
+        <div class="hero-stat"><div class="num">100%</div><div class="label">Elégedett ügyfél</div></div>
+        <div class="hero-stat"><div class="num">0 Ft</div><div class="label">Felmérési díj</div></div>
       </div>
     </div>
   </section>
 
-  <!-- WHY -->
-  <section class="why">
-    <h2>Miért válasszon minket?</h2>
-    <p class="sub">Nem csak elvégezzük a munkát – utána sem kell aggódnia.</p>
-    <div class="pillars">
-      <div class="pillar">
-        <div class="num">10+</div>
-        <h4>Év tapasztalat</h4>
-        <p>Csak olyan munkát vállalunk, amit biztosan jól tudunk csinálni.</p>
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-item">✅ Ingyenes helyszíni felmérés</div>
+    <div class="trust-item">✅ Írásos árajánlat, rejtett díjak nélkül</div>
+    <div class="trust-item">✅ Garanciával vállalt munkák</div>
+    <div class="trust-item">✅ Egyetlen kapcsolattartó az egész projekt alatt</div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="szolgaltatasok">
+    <div class="section-header">
+      <div class="section-tag">Szolgáltatások</div>
+      <h2>Mindent vállalunk – egyszerre.</h2>
+      <p>Nem kell öt különböző mestert koordinálni. Mi elvégezzük az egészet: a tervezéstől az átadásig.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80&fit=crop" alt="Ablakcsere" />
+        <div class="service-body">
+          <div class="service-icon">🪟</div>
+          <h3>Ablakcsere & nyílászáró</h3>
+          <p>Régi, tömítetlen ablakok cseréje korszerű, energiatakarékos megoldásokra. Beépítés, tömítés, utómunka – minden beleszámítva az árba.</p>
+        </div>
       </div>
-      <div class="pillar">
-        <div class="num">100%</div>
-        <h4>Határidő tartás</h4>
-        <p>Amit megígérünk, azt tartjuk. Időben, anyagban, minőségben.</p>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80&fit=crop" alt="Festés" />
+        <div class="service-body">
+          <div class="service-icon">🎨</div>
+          <h3>Festés & mázolás</h3>
+          <p>Belső falak, mennyezetek, lépcsőházak, homlokzatok. Glettelés, alapozás, fedőréteg – a felület tökéletes, tartós és egyenletes lesz.</p>
+        </div>
       </div>
-      <div class="pillar">
-        <div class="num">0</div>
-        <h4>Rejtett költség</h4>
-        <p>Átlátható árajánlat előre – nem éri meglepetés a munka végén.</p>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80&fit=crop" alt="Gipszkarton" />
+        <div class="service-body">
+          <div class="service-icon">🔲</div>
+          <h3>Gipszkarton szerkezetek</h3>
+          <p>Válaszfalak, álmennyezetek, beépített bútor-alap, hangszigetelés. Gyors, tiszta, precíz – és száraz technológia, ami nem nedvesíti az épületet.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&fit=crop" alt="Burkolás" />
+        <div class="service-body">
+          <div class="service-icon">🔷</div>
+          <h3>Burkolás</h3>
+          <p>Padló- és falburkolás, csempe, járólap, teraszburkolat. Milliméter-pontos fugázás, egyenes sorok, tartós ragasztóanyag – olyanra, ahogy a prospektusban is látszik.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&fit=crop" alt="Villanyszerelés" />
+        <div class="service-body">
+          <div class="service-icon">⚡</div>
+          <h3>Villanyszerelés</h3>
+          <p>Elektromos hálózat teljes kiépítése vagy felújítása: elosztó, aljzatok, kapcsolók, világítástechnika. Biztonságos, szabványos, ellenőrzött.</p>
+        </div>
+      </div>
+      <div class="service-card" style="background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 100%); border-color: transparent; display: flex; align-items: center; justify-content: center;">
+        <div class="service-body" style="text-align:center;">
+          <div style="font-size:2.5rem; margin-bottom:1rem;">🤝</div>
+          <h3 style="color:#fff; margin-bottom:0.8rem;">Komplett felújítás?</h3>
+          <p style="color:#9ca3af; margin-bottom:1.5rem;">Ha az egészet egyszerre szeretné – ablaktól padlóig – szóljon. Összesített árajánlatot adunk, és mi koordinálunk mindent.</p>
+          <a href="tel:+36308735288" style="display:inline-block; background:var(--orange); color:#fff; text-decoration:none; padding:0.7rem 1.5rem; border-radius:8px; font-weight:700; font-size:0.9rem;">📞 Egyeztessünk!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="hogyan">
+    <div class="section-header">
+      <div class="section-tag">Folyamat</div>
+      <h2>Hogyan működik?</h2>
+      <p>Egyszerű, átlátható, stresszmentes. Négy lépés, és kész a lakása.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Felveszi a kapcsolatot</h4>
+        <p>Hív, vagy ír. Megbeszéljük mire van szüksége, és időpontot egyeztetünk a helyszíni felmérésre.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Ingyenes felmérés</h4>
+        <p>Kimegyünk, megnézzük a helyszínt, felmérjük a munkát. Nem számlázunk ezért semmit.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Írásos árajánlat</h4>
+        <p>48 órán belül megkapja a részletes, tételes ajánlatot. Nincsenek rejtett sorok és utólagos pluszdíjak.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Munka & átadás</h4>
+        <p>Elvégezzük a munkát, a határidőt tartjuk. Átadás után garanciát vállalunk minden elvégzett munkára.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <div class="section-header">
+      <div class="section-tag">Munkáink</div>
+      <h2>Amit a kezünkkel csináltunk</h2>
+      <p>Minden kép egy elvégzett munka. Minden elvégzett munka egy elégedett ügyfél.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80&fit=crop" alt="Felújított belső tér" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=80&fit=crop" alt="Modern konyha" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80&fit=crop" alt="Fürdőszoba burkolás" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&q=80&fit=crop" alt="Festett fal" />
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?w=600&q=80&fit=crop" alt="Nappali felújítás" />
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="velemenyek">
+    <div class="section-header">
+      <div class="section-tag">Vélemények</div>
+      <h2>Mit mondanak ügyfeleink?</h2>
+      <p>Nem mi mondjuk, hogy jók vagyunk. Ők mondják.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Komplett lakásfelújítást csináltunk velük – ablakcsere, festés, burkolás egyszerre. Két hét, és kész volt minden. Más mesternél ez minimum három hónap lett volna."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">KM</div>
+          <div><div class="testi-name">Kovács Márton</div><div class="testi-loc">Budapest, XIII. kerület</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Az árajánlatból egy forint sem csúszott el. Pontosan annyit fizettünk, amennyit mondtak. Ez ma ritkaság. Az eredmény pedig gyönyörű lett – a szomszédok is megkérdezték, ki csinálta."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">SV</div>
+          <div><div class="testi-name">Szabó Viktória</div><div class="testi-loc">Budaörs</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Villanyszerelést és gipszkartonozást kértem, és ők ezt úgy koordinálták, hogy egyszerre haladtak. Nagyon profi csapat, ajánlom mindenkinek aki nem akar bajlódni."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">NP</div>
+          <div><div class="testi-name">Nagy Péter</div><div class="testi-loc">Győr</div></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA BAND -->
-  <div class="cta-band">
-    <h2>Kérjen ingyenes felmérést!</h2>
-    <p>Hívjon vagy írjon – 24 órán belül visszajelzünk.</p>
-    <a class="btn" href="tel:+36308735288">📞 +36 30 873 5288</a>
-  </div>
+  <section class="cta-band">
+    <div class="cta-bg"></div>
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+      <h2>Kezdjük el együtt!</h2>
+      <p>Hívjon most, és 24 órán belül visszajelzünk az ingyenes helyszíni felmérés időpontjáról.</p>
+      <a class="btn-white" href="tel:+36308735288">📞 +36 30 873 5288</a>
+    </div>
+  </section>
 
   <!-- CONTACT -->
-  <section class="contact">
-    <h2>Elérhetőség</h2>
-    <p class="sub">Hívjon bármikor, készséggel állunk rendelkezésére.</p>
-    <div class="contact-box">
-      <div class="contact-row">
-        📞 <a href="tel:+36308735288">+36 30 873 5288</a>
+  <section class="contact" id="kapcsolat">
+    <div class="contact-inner">
+      <div class="section-header" style="margin-bottom:0">
+        <div class="section-tag">Kapcsolat</div>
+        <h2>Írjon vagy hívjon!</h2>
+        <p>Általában pár órán belül válaszolunk. Hétvégén is elérhetők vagyunk.</p>
+      </div>
+      <div class="contact-card">
+        <div style="font-size:0.9rem; color:var(--muted);">Telefonos elérhetőség</div>
+        <a class="phone-big" href="tel:+36308735288">+36 30 873 5288</a>
+        <div class="note">Hétfőtől szombatig 8:00–18:00 · Hétvégén is elérhető</div>
+        <a class="call-btn" href="tel:+36308735288">📞 Hívjon most – ingyen felmérés!</a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    © 2026 GenerálÉpít · Minden jog fenntartva
+    <p>© 2026 <strong>GenerálÉpít</strong> · Megbízható kivitelezés · Minden jog fenntartva</p>
   </footer>
 
-  <!-- FLOATING CTA -->
+  <!-- FLOAT -->
   <a class="float-call" href="tel:+36308735288">📞 Hívjon most!</a>
 
 </body>
