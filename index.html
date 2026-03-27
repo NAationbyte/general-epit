@@ -640,5 +640,211 @@
   <!-- FLOAT -->
   <a class="float-call" href="tel:+36308735288">📞 Hívjon most!</a>
 
+  <!-- CHATBOT WIDGET -->
+  <div id="chat-widget">
+    <button id="chat-toggle" aria-label="Chat megnyitása">
+      <span id="chat-icon">💬</span>
+    </button>
+    <div id="chat-box" style="display:none;">
+      <div id="chat-header">
+        <div id="chat-avatar">GÉ</div>
+        <div>
+          <div id="chat-name">GenerálÉpít Asszisztens</div>
+          <div id="chat-status">🟢 Elérhető most</div>
+        </div>
+        <button id="chat-close">✕</button>
+      </div>
+      <div id="chat-messages">
+        <div class="msg bot">Szia! 👋 Miben segíthetek? Válasszon az alábbi témák közül, vagy írja le kérdését!</div>
+        <div id="quick-replies">
+          <button class="qr" data-q="ar">💰 Árajánlat kérés</button>
+          <button class="qr" data-q="felmeres">📏 Ingyenes felmérés</button>
+          <button class="qr" data-q="mikor">⏱️ Mikorra tudnak jönni?</button>
+          <button class="qr" data-q="garancia">🛡️ Garancia</button>
+          <button class="qr" data-q="tobb">🔧 Mit vállalnak?</button>
+        </div>
+      </div>
+      <div id="chat-input-row">
+        <input id="chat-input" type="text" placeholder="Írjon üzenetet..." autocomplete="off" />
+        <button id="chat-send">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #chat-widget {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 1.5rem;
+      z-index: 998;
+      font-family: 'Inter', sans-serif;
+    }
+    #chat-toggle {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: var(--dark);
+      border: none; cursor: pointer;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #chat-toggle:hover { transform: scale(1.08); }
+    #chat-box {
+      position: absolute;
+      bottom: 70px; right: 0;
+      width: 340px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 16px 64px rgba(0,0,0,0.18);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      animation: slideUp 0.25s ease;
+    }
+    @keyframes slideUp { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    #chat-header {
+      background: var(--dark);
+      color: #fff;
+      padding: 1rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    #chat-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+    }
+    #chat-name { font-weight: 700; font-size: 0.9rem; }
+    #chat-status { font-size: 0.75rem; color: #86efac; }
+    #chat-close {
+      margin-left: auto; background: none; border: none;
+      color: #9ca3af; cursor: pointer; font-size: 1rem; padding: 0.2rem;
+    }
+    #chat-close:hover { color: #fff; }
+    #chat-messages {
+      padding: 1rem;
+      flex: 1;
+      overflow-y: auto;
+      max-height: 320px;
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .msg {
+      max-width: 85%;
+      padding: 0.65rem 0.9rem;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .msg.bot {
+      background: #f3f4f6;
+      color: var(--dark);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .msg.user {
+      background: var(--orange);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    #quick-replies {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.3rem;
+    }
+    .qr {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      color: var(--dark);
+    }
+    .qr:hover { background: var(--orange-light); border-color: var(--orange); }
+    #chat-input-row {
+      display: flex; gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+    #chat-input {
+      flex: 1; border: 1.5px solid var(--border);
+      border-radius: 8px; padding: 0.55rem 0.8rem;
+      font-family: 'Inter', sans-serif; font-size: 0.88rem;
+      outline: none;
+    }
+    #chat-input:focus { border-color: var(--orange); }
+    #chat-send {
+      background: var(--orange); color: #fff; border: none;
+      border-radius: 8px; padding: 0.55rem 0.9rem;
+      cursor: pointer; font-size: 1rem; transition: background 0.2s;
+    }
+    #chat-send:hover { background: var(--orange-dark); }
+
+    @media (max-width: 400px) {
+      #chat-box { width: calc(100vw - 2rem); right: -0.5rem; }
+    }
+  </style>
+
+  <script>
+    const toggle = document.getElementById('chat-toggle');
+    const box = document.getElementById('chat-box');
+    const closeBtn = document.getElementById('chat-close');
+    const input = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('chat-send');
+    const messages = document.getElementById('chat-messages');
+    const icon = document.getElementById('chat-icon');
+
+    const answers = {
+      ar: "Árajánlathoz ingyenes helyszíni felmérés szükséges. Hívjon minket és megbeszéljük az időpontot: <a href='tel:+36308735288'>+36 30 873 5288</a> 📞",
+      felmeres: "A helyszíni felmérés teljesen ingyenes és kötelezettségmentes! Hívjon, és 1-2 napon belül ki tudunk menni: <a href='tel:+36308735288'>+36 30 873 5288</a> 📞",
+      mikor: "Általában 3-7 munkanapon belül tudunk kezdeni. Sürgős esetben hamarabb is egyeztethetünk – hívjon: <a href='tel:+36308735288'>+36 30 873 5288</a> 📞",
+      garancia: "Minden elvégzett munkára garanciát vállalunk. A garancia részleteit az írásos árajánlatban rögzítjük. Kérdése van? <a href='tel:+36308735288'>Hívjon minket!</a>",
+      tobb: "Vállalunk: ablakcsere, festés, gipszkarton, burkolás, villanyszerelés – akár egyszerre, komplett felújításként is! <a href='tel:+36308735288'>Hívjon részletekért!</a>"
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = box.style.display === 'flex';
+      box.style.display = open ? 'none' : 'flex';
+      box.style.flexDirection = 'column';
+      icon.textContent = open ? '💬' : '✕';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      box.style.display = 'none';
+      icon.textContent = '💬';
+    });
+
+    document.querySelectorAll('.qr').forEach(btn => {
+      btn.addEventListener('click', () => {
+        addMsg(btn.textContent, 'user');
+        document.getElementById('quick-replies')?.remove();
+        setTimeout(() => addMsg(answers[btn.dataset.q], 'bot'), 400);
+      });
+    });
+
+    sendBtn.addEventListener('click', sendMsg);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+
+    function sendMsg() {
+      const text = input.value.trim();
+      if (!text) return;
+      addMsg(text, 'user');
+      input.value = '';
+      document.getElementById('quick-replies')?.remove();
+      setTimeout(() => {
+        addMsg("Köszönöm a kérdést! A legpontosabb választ kollégáink tudják adni személyesen. Hívjon minket: <a href='tel:+36308735288'>+36 30 873 5288</a> 📞", 'bot');
+      }, 500);
+    }
+
+    function addMsg(html, type) {
+      const div = document.createElement('div');
+      div.className = 'msg ' + type;
+      div.innerHTML = html;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
+
 </body>
 </html>
